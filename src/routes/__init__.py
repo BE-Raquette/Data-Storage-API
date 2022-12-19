@@ -1,3 +1,3 @@
+from .sessions import router as sessions_router
 
-
-routers = []
+routers = [sessions_router]
