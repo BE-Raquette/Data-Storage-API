@@ -1,8 +1,9 @@
-from datetime import datetime, timedelta
+from datetime import datetime
 
 from bson import ObjectId
 from fastapi import APIRouter, Response
 
+from models import SessionModel
 from utils.mongodb import database_interface
 from settings import SESSION_MODEL
 
@@ -29,7 +30,7 @@ async def get_session(session_id: str):
 
 
 @router.post("/start_new")
-async def start_session():
+async def start_session(session: SessionModel):
     session = SESSION_MODEL.copy()
     session["start_time"] = datetime.now()
     session_id = database_interface.start_session(session)
