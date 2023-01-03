@@ -53,5 +53,9 @@ class DatabaseInterface:
                 elif isinstance(item, list):
                     DatabaseInterface.stringify_object_ids(item)
 
+    def clear_database(self) -> None:
+        delete_count = self.sessions.delete_many({}).deleted_count
+        print(f"Deleted {delete_count} sessions.")
+
 
 database_interface = DatabaseInterface()
