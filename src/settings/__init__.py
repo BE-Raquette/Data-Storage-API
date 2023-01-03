@@ -8,8 +8,15 @@ SESSIONS_COLLECTION = "sessions"
 SENSORS_COLLECTION = "sensors"
 
 SESSION_MODEL = {
+    "player_data": {
+        "height": None,
+        "weight": None,
+        "age": None,
+        "gender": None,
+    },
     "start_time": None,
     "end_time": None,
     "sensors": [],
-    "data": []
+    "data": [],
+    "output": [],
 }
