@@ -3,7 +3,7 @@ from datetime import datetime
 from bson import ObjectId
 from fastapi import APIRouter, Response
 
-from models import SessionModel
+from models import SessionModel, PlayerDataModel
 from utils.mongodb import database_interface
 from settings import SESSION_MODEL
 
@@ -29,13 +29,13 @@ async def get_session(session_id: str):
         return Response(status_code=400, content="Invalid session ID.")
 
 
-@router.post("/start_new")
-async def start_session(session: SessionModel):
+@router.post("/start")
+async def start_session(player_data: PlayerDataModel):
     session = SESSION_MODEL.copy()
     session["start_time"] = datetime.now()
+    session["player_data"] = player_data.dict()
     session_id = database_interface.start_session(session)
-    response = session_id
-    return response
+    return session_id
 
 
 @router.put("/{session_id}/end")
