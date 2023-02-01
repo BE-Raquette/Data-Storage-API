@@ -35,7 +35,9 @@ async def start_session(player_data: PlayerDataModel):
     session["start_time"] = datetime.now()
     session["player_data"] = player_data.dict()
     session_id = database_interface.start_session(session)
-    return session_id
+    return {
+        "session_id": session_id
+    }
 
 
 @router.put("/{session_id}/end")
