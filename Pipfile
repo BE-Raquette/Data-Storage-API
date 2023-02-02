@@ -1,0 +1,16 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+pymongo = "~=3.11.0"
+fastapi = "~=0.76.0"
+pydantic = "~=1.7.4"
+uvicorn = {extras = ["standard"], version = "*"}
+dnspython = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.10"
