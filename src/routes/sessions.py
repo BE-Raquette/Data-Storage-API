@@ -24,9 +24,9 @@ async def get_session(session_id: str):
             response = session
         else:
             response = Response(status_code=404, content="Session not found.")
-        return response
     else:
-        return Response(status_code=400, content="Invalid session ID.")
+        response = Response(status_code=400, content="Invalid session ID.")
+    return response
 
 
 @router.post("/start")
