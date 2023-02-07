@@ -31,6 +31,13 @@ class DatabaseInterface:
     def update_session(self, session: dict) -> None:
         _id = session.pop("_id")
         self.sessions.update_one({"_id": ObjectId(_id)}, {"$set": session})
+    
+    def add_data(self, id: str, type: str, data: dict) -> int:
+        result = self.sessions.update_one(
+            {"_id": ObjectId(id)}, 
+            {"$set": {f"sensor_data.{type}": data}}
+        )
+        return result.modified_count
 
     @staticmethod
     def stringify_object_ids(data: dict or list) -> None:

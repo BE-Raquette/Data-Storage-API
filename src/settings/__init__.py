@@ -15,7 +15,9 @@ SESSION_MODEL = {
     },
     "start_time": None,
     "end_time": None,
-    "sensors": [],
-    "data": [],
-    "output": [],
+    "sensor_data": {
+        "forehand_strokes": {},
+        "backhand_strokes": {},
+        "smashs": {}
+        },
 }
