@@ -34,7 +34,7 @@ class DatabaseInterface:
     
     def add_data(self, id: str, type: str, data: dict) -> int:
         result = self.sessions.update_one(
-            {"_id": ObjectId(id)}, 
+            {"_id": ObjectId(id)},
             {"$set": {f"sensor_data.{type}": data}}
         )
         return result.modified_count
