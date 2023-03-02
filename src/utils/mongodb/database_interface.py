@@ -1,4 +1,5 @@
 from bson import ObjectId
+from datetime import datetime
 
 from pymongo import MongoClient
 
@@ -35,7 +36,12 @@ class DatabaseInterface:
     def add_data(self, id: str, type: str, data: dict) -> int:
         result = self.sessions.update_one(
             {"_id": ObjectId(id)},
-            {"$set": {f"sensor_data.{type}": data}}
+            {"$set": {
+                "sensor_data": data,
+                "type": type,
+                "end_time": datetime.now()
+                }
+            }
         )
         return result.modified_count
 

@@ -38,15 +38,3 @@ async def start_session(player_data: PlayerDataModel):
     return {
         "session_id": session_id
     }
-
-
-@router.put("/{session_id}/end")
-async def end_session(session_id: str):
-    session = database_interface.get_session(session_id)
-    if session:
-        session["end_time"] = datetime.now()
-        database_interface.update_session(session)
-        response = session
-    else:
-        response = Response(status_code=404, content="Session not found.")
-    return response
